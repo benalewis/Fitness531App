@@ -102,6 +102,13 @@
             android:layout_marginBottom="5sp"
             android:textSize="30sp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REFRESH"
+            android:id="@+id/mainRefreshButton"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 
 </RelativeLayout>

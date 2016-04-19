@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
     TextView warmUp1;
     TextView warmUp2;
     TextView warmUp3;
+    Button refreshButton;
+    int OHP1RM;
+    int Bench1RM;
+    int Squat1RM;
+    int Deadlift1RM;
 
     static SharedPreferences sharedPreferences;
 
@@ -25,20 +31,39 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sharedPreferences = this.getSharedPreferences("com.benlewis.fitness531app", Context.MODE_PRIVATE);
-
-        //sharedPreferences.edit().putInt("ohp", 70).apply();
-
-        int OHPrm = sharedPreferences.getInt("ohp", 0);
-
         warmUp1 = (TextView) findViewById(R.id.warmup1TextView);
         warmUp2 = (TextView) findViewById(R.id.warmup2TextView);
         warmUp3 = (TextView) findViewById(R.id.warmup3TextView);
+        refreshButton = (Button) findViewById(R.id.mainRefreshButton);
+        sharedPreferences = this.getSharedPreferences("com.benlewis.fitness531app", Context.MODE_PRIVATE);
 
-        warmUp1.setText(calcWarmUp(OHPrm, 1));
-        warmUp2.setText(calcWarmUp(OHPrm, 2));
-        warmUp3.setText(calcWarmUp(OHPrm, 3));
+        initPreferences();
+        updateLifts();
+    }
 
+    public void initPreferences() {
+
+        //Get the data, if there's no data it hasn't been initialised. Init if not
+        try {
+            sharedPreferences.getInt("ohp", 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            sharedPreferences.edit().putInt("ohp", 0).apply();
+            sharedPreferences.edit().putInt("bench", 0).apply();
+            sharedPreferences.edit().putInt("squat", 0).apply();
+            sharedPreferences.edit().putInt("deadlift", 0).apply();
+        }
+
+        OHP1RM = sharedPreferences.getInt("ohp", 0);
+        Bench1RM = sharedPreferences.getInt("bench", 0);
+        Squat1RM = sharedPreferences.getInt("squat", 0);
+        Deadlift1RM = sharedPreferences.getInt("deadlift", 0);
+    }
+
+    public void updateLifts() {
+        warmUp1.setText(calcWarmUp(OHP1RM, 1));
+        warmUp2.setText(calcWarmUp(OHP1RM, 2));
+        warmUp3.setText(calcWarmUp(OHP1RM, 3));
     }
 
     public String calcWarmUp(int oneRepMax, int warmUpNumber) {
