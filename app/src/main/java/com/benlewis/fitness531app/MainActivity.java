@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     int deadlift1rm;
 
     String liftSpinnerString = "";
+    String weekSpinnerString = "";
+
+    String[] repsArray = { "5", "5", "3"};
+    String[] week1Array = {"5", "5", "5+"};
+    String[] week2Array = {"3", "3", "3+"};
+    String[] week3Array = {"5", "3", "1+"};
 
     static SharedPreferences sharedPreferences;
 
@@ -52,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
         initPreferences();
         updateLifts();
 
-        //Spinner code
-        Spinner spinner = (Spinner) findViewById(R.id.mainLiftSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.calcArray, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        //Lifts spinner code
+        Spinner liftSpinner = (Spinner) findViewById(R.id.mainLiftSpinner);
+        ArrayAdapter<CharSequence> liftAdapter = ArrayAdapter.createFromResource(this, R.array.calcArray, android.R.layout.simple_spinner_item);
+        liftAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        liftSpinner.setAdapter(liftAdapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        liftSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String r = parent.getItemAtPosition(position).toString();
@@ -71,6 +78,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Week spinner code
+        Spinner weekSpinner = (Spinner) findViewById(R.id.mainWeekSpinner);
+        ArrayAdapter<CharSequence> weekAdapter = ArrayAdapter.createFromResource(this, R.array.weekArray, android.R.layout.simple_spinner_item);
+        weekAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        weekSpinner.setAdapter(weekAdapter);
+
+        weekSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String r = parent.getItemAtPosition(position).toString();
+                weekSpinnerString = r.toLowerCase();
+                Log.i("Week: ", r);
+                updateLifts();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
     }
 
     public void initPreferences() {
@@ -95,14 +125,39 @@ public class MainActivity extends AppCompatActivity {
     public void updateLifts() {
         //Called every time the activity is loaded.
         //Fills the text fields with the correct data
+
         switch (liftSpinnerString) {
             case "ohp":
                 warmUp1.setText(calcWarmUp(ohp1rm, 1));
                 warmUp2.setText(calcWarmUp(ohp1rm, 2));
                 warmUp3.setText(calcWarmUp(ohp1rm, 3));
-                fiveThreeOne1.setText(calc531(ohp1rm, 1));
-                fiveThreeOne2.setText(calc531(ohp1rm, 2));
-                fiveThreeOne3.setText(calc531(ohp1rm, 3));
+                fiveThreeOne1.setText(calc531(ohp1rm, 1, weekSpinnerString));
+                fiveThreeOne2.setText(calc531(ohp1rm, 2, weekSpinnerString));
+                fiveThreeOne3.setText(calc531(ohp1rm, 3, weekSpinnerString));
+                break;
+            case "bench":
+                warmUp1.setText(calcWarmUp(bench1rm, 1));
+                warmUp2.setText(calcWarmUp(bench1rm, 2));
+                warmUp3.setText(calcWarmUp(bench1rm, 3));
+                fiveThreeOne1.setText(calc531(bench1rm, 1, weekSpinnerString));
+                fiveThreeOne2.setText(calc531(bench1rm, 2, weekSpinnerString));
+                fiveThreeOne3.setText(calc531(bench1rm, 3, weekSpinnerString));
+                break;
+            case "squat":
+                warmUp1.setText(calcWarmUp(squat1rm, 1));
+                warmUp2.setText(calcWarmUp(squat1rm, 2));
+                warmUp3.setText(calcWarmUp(squat1rm, 3));
+                fiveThreeOne1.setText(calc531(squat1rm, 1, weekSpinnerString));
+                fiveThreeOne2.setText(calc531(squat1rm, 2, weekSpinnerString));
+                fiveThreeOne3.setText(calc531(squat1rm, 3, weekSpinnerString));
+                break;
+            case "deadlift":
+                warmUp1.setText(calcWarmUp(deadlift1rm, 1));
+                warmUp2.setText(calcWarmUp(deadlift1rm, 2));
+                warmUp3.setText(calcWarmUp(deadlift1rm, 3));
+                fiveThreeOne1.setText(calc531(deadlift1rm, 1, weekSpinnerString));
+                fiveThreeOne2.setText(calc531(deadlift1rm, 2, weekSpinnerString));
+                fiveThreeOne3.setText(calc531(deadlift1rm, 3, weekSpinnerString));
                 break;
             default:
                 break;
@@ -112,32 +167,42 @@ public class MainActivity extends AppCompatActivity {
     public String calcWarmUp(int oneRepMax, int warmUpNumber) {
 
         double adjustment = 0;
-        int reps = 0;
-        String warmUp = "";
+        String s = "";
 
         switch (warmUpNumber) {
             case 1:
                 adjustment = 0.4;
-                reps = 5;
                 break;
             case 2:
                 adjustment = 0.5;
-                reps = 5;
                 break;
             case 3:
                 adjustment = 0.6;
-                reps = 3;
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment)) + " x " + reps);
-        return  warmUp;
+
+        s = (((int) (oneRepMax * adjustment)) + " x ");
+        return s;
     }
 
-    public String calc531(int oneRepMax, int liftNumber) {
+    public String calc531(int oneRepMax, int liftNumber, String weekSpinnerString) {
         double adjustment = 0;
         int reps = 0;
-        String warmUp = "";
+        String warmUp;
+        double weekAdjustment = 1;
+
+        switch (weekSpinnerString) {
+            case "1":
+                weekAdjustment = 1;
+                break;
+            case "2":
+                weekAdjustment = 1.05;
+                break;
+            case "3":
+                weekAdjustment = 1.1;
+                break;
+        }
 
         switch (liftNumber) {
             case 1:
@@ -154,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment)) + " x " + reps);
+        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + " x " + reps);
         return  warmUp;
     }
 

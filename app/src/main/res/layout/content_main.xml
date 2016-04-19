@@ -39,20 +39,11 @@
             android:textSize="25sp"
             android:layout_marginLeft="10sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="week"
-            android:id="@+id/editWeekTextView"
-            android:layout_marginLeft="5sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="timer"
-            android:id="@+id/timerButton"
-            android:layout_marginLeft="50sp" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:id="@+id/mainWeekSpinner"
+            android:spinnerMode="dropdown" />
 
     </LinearLayout>
 
