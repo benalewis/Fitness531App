@@ -168,58 +168,66 @@ public class MainActivity extends AppCompatActivity {
 
         double adjustment = 0;
         String s = "";
+        int repsArrayRef  = 0;
 
         switch (warmUpNumber) {
             case 1:
                 adjustment = 0.4;
+                repsArrayRef = 0;
                 break;
             case 2:
                 adjustment = 0.5;
+                repsArrayRef = 1;
                 break;
             case 3:
                 adjustment = 0.6;
+                repsArrayRef = 2;
                 break;
         }
 
 
-        s = (((int) (oneRepMax * adjustment)) + " x ");
+        s = (((int) (oneRepMax * adjustment)) + " x " + repsArray[repsArrayRef]);
         return s;
     }
 
     public String calc531(int oneRepMax, int liftNumber, String weekSpinnerString) {
         double adjustment = 0;
-        int reps = 0;
         String warmUp;
         double weekAdjustment = 1;
+        String[] calc531array = { "", "", ""};
+        int arrayRef = 0;
 
         switch (weekSpinnerString) {
             case "1":
                 weekAdjustment = 1;
+                calc531array = week1Array.clone();
                 break;
             case "2":
                 weekAdjustment = 1.05;
+                calc531array = week2Array.clone();
                 break;
             case "3":
                 weekAdjustment = 1.1;
+                calc531array = week3Array.clone();
                 break;
         }
 
         switch (liftNumber) {
             case 1:
                 adjustment = 0.75;
-                reps = 5;
+                arrayRef = 0;
                 break;
             case 2:
                 adjustment = 0.85;
-                reps = 5;
+                arrayRef = 1;
                 break;
             case 3:
                 adjustment = 0.95;
-                reps = 5;
+                arrayRef = 2;
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + " x " + reps);
+        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + " x " + calc531array[arrayRef]);
         return  warmUp;
     }
 
