@@ -1,6 +1,7 @@
 package com.benlewis.fitness531app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -80,7 +81,19 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.settings) {
+
+            Intent i = new Intent(getApplicationContext(), Settings.class);
+            startActivity(i);
+
+            return true;
+        }
+
+        if (id == R.id.calculator) {
+
+            Intent i = new Intent(getApplicationContext(), Calculator.class);
+            startActivity(i);
+
             return true;
         }
 
