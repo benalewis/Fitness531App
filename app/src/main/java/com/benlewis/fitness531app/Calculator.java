@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Calculator extends AppCompatActivity {
@@ -15,6 +18,7 @@ public class Calculator extends AppCompatActivity {
     TextView result;
     Button calculateButton;
     Button pushPreferencesButton;
+    String spinnerString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,25 @@ public class Calculator extends AppCompatActivity {
         weight = (EditText) findViewById(R.id.calcWeightEditText);
         reps = (EditText) findViewById(R.id.calcRepsEditText);
         pushPreferencesButton = (Button) findViewById(R.id.calcPushPreferencesButton);
+
+        //Spinner code
+        Spinner spinner = (Spinner) findViewById(R.id.calcSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.calcArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String r =parent.getItemAtPosition(position).toString();
+                spinnerString = r.toLowerCase();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +69,7 @@ public class Calculator extends AppCompatActivity {
             public void onClick(View v) {
 
                 int r = Integer.parseInt(result.getText().toString());
-                MainActivity.sharedPreferences.edit().putInt("ohp", r).apply();
+                MainActivity.sharedPreferences.edit().putInt(spinnerString, r).apply();
             }
         });
     }

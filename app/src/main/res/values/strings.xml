@@ -4,4 +4,11 @@
     <string name="title_activity_settings_and_calculator">Settings And Calculator</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_calculator">1RM Calculator</string>
+
+    <string-array name="calcArray">
+        <item>OHP</item>
+        <item>Bench</item>
+        <item>Squat</item>
+        <item>Deadlift</item>
+    </string-array>
 </resources>
