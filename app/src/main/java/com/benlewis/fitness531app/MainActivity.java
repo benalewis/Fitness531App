@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        s = (((int) (oneRepMax * adjustment)) + " x " + repsArray[repsArrayRef]);
+        s = (((int) (oneRepMax * adjustment)) + "kg x " + repsArray[repsArrayRef]);
         return s;
     }
 
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + " x " + calc531array[arrayRef]);
+        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + "kg x " + calc531array[arrayRef]);
         return  warmUp;
     }
 
