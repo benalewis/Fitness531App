@@ -24,13 +24,11 @@
             android:id="@+id/liftTextView"
             android:textSize="25sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="lift"
-            android:id="@+id/editLiftTextView"
-            android:layout_marginLeft="5sp" />
+        <Spinner
+            android:layout_width="111dp"
+            android:layout_height="43dp"
+            android:id="@+id/mainLiftSpinner"
+            android:spinnerMode="dropdown" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,12 +100,38 @@
             android:layout_marginBottom="5sp"
             android:textSize="30sp" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REFRESH"
-            android:id="@+id/mainRefreshButton"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/main531TextView"
+            android:textSize="30sp"
+            android:hint="5/3/1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main531_1"
+            android:layout_gravity="center_horizontal"
+            android:textIsSelectable="false"
+            android:textSize="30sp"
+            android:hint="5/3/1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main531_2"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30sp"
+            android:hint="5/3/1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main531_3"
+            android:layout_gravity="center_horizontal"
+            android:textIsSelectable="false"
+            android:textSize="30sp"
+            android:hint="5/3/1" />
 
     </LinearLayout>
 
