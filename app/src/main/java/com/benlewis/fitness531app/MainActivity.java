@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,11 +25,16 @@ public class MainActivity extends AppCompatActivity {
     TextView fiveThreeOne1;
     TextView fiveThreeOne2;
     TextView fiveThreeOne3;
+    TextView timerTextView;
+
+    Button stopStartButton;
+    Button resetButton;
 
     int ohp1rm;
     int bench1rm;
     int squat1rm;
     int deadlift1rm;
+    long timer ;
 
     String liftSpinnerString = "";
     String weekSpinnerString = "";
@@ -53,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         fiveThreeOne1 = (TextView) findViewById(R.id.main531_1);
         fiveThreeOne2 = (TextView) findViewById(R.id.main531_2);
         fiveThreeOne3 = (TextView) findViewById(R.id.main531_3);
+
+        timerTextView = (TextView) findViewById(R.id.mainTimerTextView);
+        resetButton = (Button) findViewById(R.id.mainResetButton);
+        stopStartButton = (Button) findViewById(R.id.mainStopStartButton);
 
         sharedPreferences = this.getSharedPreferences("com.benlewis.fitness531app", Context.MODE_PRIVATE);
 
@@ -100,7 +111,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Timer values passed are in ms, 2nd value is how often to call the first method
+        final CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
 
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText("Time Left: " + String.valueOf(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                timerTextView.setText("Finished");
+
+            }
+        };
+
+        stopStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String b = stopStartButton.getText().toString().toLowerCase();
+
+                if (b.equals("start")) {
+                    countDownTimer.start();
+                    stopStartButton.setText("Stop");
+                }
+
+                if (b.equals("stop")) {
+                    countDownTimer.cancel();
+                    stopStartButton.setText("Start");
+                }
+
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countDownTimer.cancel();
+                countDownTimer.start();
+            }
+        });
     }
 
     public void initPreferences() {
@@ -114,12 +165,14 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().putInt("bench", 0).apply();
             sharedPreferences.edit().putInt("squat", 0).apply();
             sharedPreferences.edit().putInt("deadlift", 0).apply();
+            sharedPreferences.edit().putLong("timer", 0).apply();
         }
 
         ohp1rm = sharedPreferences.getInt("ohp", 0);
         bench1rm = sharedPreferences.getInt("bench", 0);
         squat1rm = sharedPreferences.getInt("squat", 0);
         deadlift1rm = sharedPreferences.getInt("deadlift", 0);
+        timer = sharedPreferences.getLong("timer", 0);
     }
 
     public void updateLifts() {
