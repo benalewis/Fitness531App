@@ -1,6 +1,7 @@
 package com.benlewis.fitness531app;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -56,20 +57,37 @@ public class Calculator extends AppCompatActivity {
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Snack bar Code
+                final Snackbar snackbar = Snackbar.make(findViewById(R.id.calcResultTextView),
+                        "Enter data in all fields", Snackbar.LENGTH_SHORT);
 
+                try {
                 double w = Double.parseDouble(weight.getText().toString());
                 double r = Double.parseDouble(reps.getText().toString());
 
                 result.setText(calc1RM(w,r));
+                } catch (Exception e) {
+                    snackbar.show();
+                }
             }
         });
 
         pushPreferencesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Snack bar Code
+                final Snackbar snackBar1 = Snackbar.make(findViewById(R.id.calcResultTextView),
+                        "Result must be calculated first", Snackbar.LENGTH_SHORT);
 
-                int r = Integer.parseInt(result.getText().toString());
-                MainActivity.sharedPreferences.edit().putInt(spinnerString, r).apply();
+                try {
+                    int r = Integer.parseInt(result.getText().toString());
+                    final Snackbar snackBar2 = Snackbar.make(findViewById(R.id.calcResultTextView),
+                            spinnerString + " updated.", Snackbar.LENGTH_LONG);
+                    snackBar2.show();
+                } catch (Exception e ) {
+                    e.printStackTrace();
+                    snackBar1.show();
+                }
             }
         });
     }

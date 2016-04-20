@@ -8,7 +8,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_calculator"
-    tools:context="com.benlewis.fitness531app.Calculator">
+    tools:context="com.benlewis.fitness531app.Calculator"
+    android:id="@+id/calcLayout">
 
     <LinearLayout
         android:orientation="horizontal"
