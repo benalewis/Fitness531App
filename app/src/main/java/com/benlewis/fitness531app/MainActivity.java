@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     int bench1rm;
     int squat1rm;
     int deadlift1rm;
-    long timer ;
+    long timer;
+    String metric;
 
     String liftSpinnerString = "";
     String weekSpinnerString = "";
@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String r = parent.getItemAtPosition(position).toString();
                 weekSpinnerString = r.toLowerCase();
-                Log.i("Week: ", r);
                 updateLifts();
             }
 
@@ -166,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().putInt("squat", 0).apply();
             sharedPreferences.edit().putInt("deadlift", 0).apply();
             sharedPreferences.edit().putLong("timer", 0).apply();
+            sharedPreferences.edit().putString("metric", "kg").apply();
         }
 
         ohp1rm = sharedPreferences.getInt("ohp", 0);
@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         squat1rm = sharedPreferences.getInt("squat", 0);
         deadlift1rm = sharedPreferences.getInt("deadlift", 0);
         timer = sharedPreferences.getLong("timer", 0);
+        metric = sharedPreferences.getString("metric", "");
     }
 
     public void updateLifts() {
@@ -239,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        s = (((int) (oneRepMax * adjustment)) + "kg x " + repsArray[repsArrayRef]);
+        s = (((int) (oneRepMax * adjustment)) + metric + " x " + repsArray[repsArrayRef]);
         return s;
     }
 
@@ -280,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + "kg x " + calc531array[arrayRef]);
+        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + metric + " x " + calc531array[arrayRef]);
         return  warmUp;
     }
 

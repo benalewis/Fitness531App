@@ -37,4 +37,37 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/settingsSetTimerButton" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsMetricToggle"
+        android:checked="true"
+        android:text="KG"
+        android:layout_below="@+id/settingsSetTimerButton"
+        android:layout_alignLeft="@+id/settingsSetTimerButton"
+        android:layout_alignStart="@+id/settingsSetTimerButton"
+        android:layout_marginTop="47dp"
+        android:textOff="Lbs"
+        android:textOn="KG" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Metric (KG or Lbs)"
+        android:id="@+id/settingsMetricTextView"
+        android:textSize="30sp"
+        android:layout_alignBottom="@+id/settingsMetricToggle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:id="@+id/settingsResetAllButton"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/settingsMetricToggle"
+        android:layout_alignStart="@+id/settingsMetricToggle" />
+
 </RelativeLayout>

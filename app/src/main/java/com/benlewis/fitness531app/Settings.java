@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 public class Settings extends AppCompatActivity {
 
     EditText timerEditText;
     Button setTimerButton;
+    Button resetAll;
+
+    ToggleButton metricToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,20 @@ public class Settings extends AppCompatActivity {
 
         timerEditText = (EditText) findViewById(R.id.settingsTimerEditText);
         setTimerButton = (Button) findViewById(R.id.settingsSetTimerButton);
+        metricToggle = (ToggleButton) findViewById(R.id.settingsMetricToggle);
+        resetAll = (Button) findViewById(R.id.settingsResetAllButton);
+
+        resetAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.sharedPreferences.edit().putInt("ohp", 0).apply();
+                MainActivity.sharedPreferences.edit().putInt("bench", 0).apply();
+                MainActivity.sharedPreferences.edit().putInt("squat", 0).apply();
+                MainActivity.sharedPreferences.edit().putInt("deadlift", 0).apply();
+                MainActivity.sharedPreferences.edit().putLong("timer", 0).apply();
+                MainActivity.sharedPreferences.edit().putString("metric", "kg").apply();
+            }
+        });
 
         setTimerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +49,15 @@ public class Settings extends AppCompatActivity {
                 MainActivity.sharedPreferences.edit().putLong("timer", i).apply();
             }
         });
-    }
 
+        metricToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    MainActivity.sharedPreferences.edit().putString("metric", "kg").apply();
+                } else {
+                    MainActivity.sharedPreferences.edit().putString("metric", "lbs").apply();
+                }
+            }
+        });
+    }
 }
