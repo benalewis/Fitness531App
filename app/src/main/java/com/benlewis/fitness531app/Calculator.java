@@ -59,7 +59,7 @@ public class Calculator extends AppCompatActivity {
             public void onClick(View v) {
                 //Snack bar Code
                 final Snackbar snackbar = Snackbar.make(findViewById(R.id.calcResultTextView),
-                        "Enter data in all fields", Snackbar.LENGTH_SHORT);
+                        "Enter data in all fields", Snackbar.LENGTH_LONG);
 
                 try {
                 double w = Double.parseDouble(weight.getText().toString());
@@ -77,7 +77,7 @@ public class Calculator extends AppCompatActivity {
             public void onClick(View v) {
                 //Snack bar Code
                 final Snackbar snackBar1 = Snackbar.make(findViewById(R.id.calcResultTextView),
-                        "Result must be calculated first", Snackbar.LENGTH_SHORT);
+                        "Result must be calculated first", Snackbar.LENGTH_LONG);
 
                 try {
                     int r = Integer.parseInt(result.getText().toString());

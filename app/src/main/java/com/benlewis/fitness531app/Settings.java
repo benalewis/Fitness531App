@@ -1,6 +1,7 @@
 package com.benlewis.fitness531app;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -43,10 +44,17 @@ public class Settings extends AppCompatActivity {
         });
 
         setTimerButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                long i = Long.parseLong(timerEditText.getText().toString());
-                MainActivity.sharedPreferences.edit().putLong("timer", i).apply();
+                Snackbar snackBar1 = Snackbar.make(findViewById(R.id.settingsResetAllButton),
+                        "Input a time.", Snackbar.LENGTH_LONG);
+                try {
+                    long i = Long.parseLong(timerEditText.getText().toString());
+                    MainActivity.sharedPreferences.edit().putLong("timer", i).apply();
+                } catch (Exception e) {
+                    snackBar1.show();
+                }
             }
         });
 
