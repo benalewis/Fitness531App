@@ -115,12 +115,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                timerTextView.setText("Time Left: " + String.valueOf(millisUntilFinished));
+
+                int totalSeconds = (int)millisUntilFinished / 1000;
+                String minutes = Integer.toString(totalSeconds/60);
+                String secondsLeft = Integer.toString(totalSeconds%60);
+
+                timerTextView.setText("Time Left: " + minutes + ":" + secondsLeft);
             }
 
             @Override
             public void onFinish() {
                 timerTextView.setText("Finished");
+                stopStartButton.setText("Start");
 
             }
         };
@@ -174,6 +180,12 @@ public class MainActivity extends AppCompatActivity {
         deadlift1rm = sharedPreferences.getInt("deadlift", 0);
         timer = sharedPreferences.getLong("timer", 0);
         metric = sharedPreferences.getString("metric", "");
+
+        //Timer
+        int totalSeconds = (int)timer / 1000;
+        String minutes = Integer.toString(totalSeconds/60);
+        String secondsLeft = Integer.toString(totalSeconds%60);
+        timerTextView.setText("Time Left: " + minutes + ":" + secondsLeft);
     }
 
     public void updateLifts() {
