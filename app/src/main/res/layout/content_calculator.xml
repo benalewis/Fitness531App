@@ -11,26 +11,6 @@
     tools:context="com.benlewis.fitness531app.Calculator"
     android:id="@+id/calcLayout">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:id="@+id/linearLayout2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1RM Calculator"
-            android:id="@+id/oneRMTextView"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal|bottom"
-            android:textSize="45sp" />
-    </LinearLayout>
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +18,6 @@
         android:ems="7"
         android:id="@+id/calcWeightEditText"
         android:gravity="center"
-        android:layout_below="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Weight (KG)" />
@@ -71,7 +50,7 @@
         android:text="Calculated 1RM"
         android:id="@+id/calc1RMTextView"
         android:textSize="30sp"
-        android:layout_above="@+id/calcResultTextView"
+        android:layout_below="@+id/calcButton"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -79,17 +58,17 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/calcResultTextView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:hint="Result"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@+id/calc1RMTextView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calculate"
         android:id="@+id/calcButton"
-        android:layout_below="@+id/calcXView"
+        android:layout_below="@+id/calcWeightEditText"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -97,17 +76,16 @@
         android:layout_height="wrap_content"
         android:text="Push To App"
         android:id="@+id/calcPushPreferencesButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/calcButton"
-        android:layout_alignStart="@+id/calcButton"
-        android:layout_marginBottom="45dp" />
+        android:layout_below="@+id/calcSpinner"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/calcSpinner"
-        android:layout_above="@+id/calcPushPreferencesButton"
-        android:layout_centerHorizontal="true"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/calcResultTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
