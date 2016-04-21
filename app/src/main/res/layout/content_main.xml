@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="Lift"
             android:id="@+id/liftTextView"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="#000000" />
 
         <Spinner
             android:layout_width="111dp"
@@ -37,7 +38,8 @@
             android:id="@+id/weekTextView"
             android:textIsSelectable="false"
             android:textSize="25sp"
-            android:layout_marginLeft="10sp" />
+            android:layout_marginLeft="10sp"
+            android:textColor="#000000" />
 
         <Spinner
             android:layout_width="match_parent"
@@ -53,14 +55,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Warmup"
             android:id="@+id/warmupTextView"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +73,8 @@
             android:id="@+id/warmup1TextView"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="5sp"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +84,8 @@
             android:layout_gravity="center_horizontal"
             android:textSize="30sp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp" />
+            android:layout_marginBottom="5sp"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,14 +95,16 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/main531TextView"
             android:textSize="30sp"
-            android:hint="5/3/1" />
+            android:hint="5/3/1"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -105,7 +113,8 @@
             android:layout_gravity="center_horizontal"
             android:textIsSelectable="false"
             android:textSize="30sp"
-            android:hint="5/3/1" />
+            android:hint="5/3/1"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,7 +122,8 @@
             android:id="@+id/main531_2"
             android:layout_gravity="center_horizontal"
             android:textSize="30sp"
-            android:hint="5/3/1" />
+            android:hint="5/3/1"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,41 +132,42 @@
             android:layout_gravity="center_horizontal"
             android:textIsSelectable="false"
             android:textSize="30sp"
-            android:hint="5/3/1" />
+            android:hint="5/3/1"
+            android:textColor="#000000" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:text="0:00"
+        android:id="@+id/mainTimerTextView"
+        android:textSize="25sp"
+        android:layout_below="@+id/mainStopStartButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="58dp"
-        android:id="@+id/linearLayout3">
+        android:layout_marginTop="42dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/mainTimerTextView"
-            android:layout_above="@+id/linearLayout3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp"
-            android:textSize="25sp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:id="@+id/mainResetButton"
+        android:background="#3399ff"
+        android:paddingLeft="0dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_toRightOf="@+id/mainTimerTextView"
+        android:layout_toEndOf="@+id/mainTimerTextView" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:id="@+id/mainStopStartButton" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESET"
-            android:id="@+id/mainResetButton" />
-    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/mainStopStartButton"
+        android:background="#3399ff"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_toLeftOf="@+id/mainTimerTextView"
+        android:layout_toStartOf="@+id/mainTimerTextView" />
 
 </RelativeLayout>

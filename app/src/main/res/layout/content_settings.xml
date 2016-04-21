@@ -9,15 +9,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_settings" tools:context="com.benlewis.fitness531app.Settings">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Settings"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +27,11 @@
         android:id="@+id/settingsSetTimerButton"
         android:layout_alignTop="@+id/settingsTimerEditText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#3399ff"
+        android:textColor="#ffffff"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp" />
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -48,7 +43,11 @@
         android:textOn="KG"
         android:layout_alignBottom="@+id/settingsMetricTextView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#3399ff"
+        android:textColor="#ffffff"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="2sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,7 +69,11 @@
         android:id="@+id/settingsResetAllButton"
         android:layout_below="@+id/settingsMetricToggle"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#3399ff"
+        android:textColor="#ffffff"
+        android:layout_marginTop="2sp"
+        android:layout_marginBottom="2sp" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -78,11 +81,11 @@
         android:text="Timer"
         android:id="@+id/settingsTimerTextView"
         android:textSize="40sp"
+        android:textColor="#000000"
+        android:singleLine="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:singleLine="false" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"

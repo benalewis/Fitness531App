@@ -18,9 +18,10 @@
         android:ems="7"
         android:id="@+id/calcWeightEditText"
         android:gravity="center"
+        android:hint="Weight"
+        android:layout_below="@+id/calcSpinner"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:hint="Weight" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,6 +51,7 @@
         android:text="Calculated 1RM"
         android:id="@+id/calc1RMTextView"
         android:textSize="30sp"
+        android:textColor="#000000"
         android:layout_below="@+id/calcButton"
         android:layout_centerHorizontal="true" />
 
@@ -61,31 +63,41 @@
         android:hint="Result"
         android:gravity="center"
         android:layout_below="@+id/calc1RMTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/calcRepsEditText"
+        android:layout_toStartOf="@+id/calcRepsEditText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calculate"
         android:id="@+id/calcButton"
+        android:textColor="#ffffff"
+        android:background="#3399ff"
         android:layout_below="@+id/calcWeightEditText"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Push To App"
+        android:text="Update App"
         android:id="@+id/calcPushPreferencesButton"
-        android:layout_below="@+id/calcSpinner"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="60dp"
+        android:textColor="#ffffff"
+        android:background="#3399ff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/calcButton"
+        android:layout_alignStart="@+id/calcButton" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/calcSpinner"
         android:spinnerMode="dropdown"
-        android:layout_below="@+id/calcResultTextView"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:touchscreenBlocksFocus="false" />
 
 </RelativeLayout>
