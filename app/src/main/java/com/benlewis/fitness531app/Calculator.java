@@ -81,6 +81,7 @@ public class Calculator extends AppCompatActivity {
 
                 try {
                     int r = Integer.parseInt(result.getText().toString());
+                    MainActivity.sharedPreferences.edit().putInt(spinnerString, r).apply();
                     final Snackbar snackBar2 = Snackbar.make(findViewById(R.id.calcResultTextView),
                             spinnerString + " updated.", Snackbar.LENGTH_LONG);
                     snackBar2.show();

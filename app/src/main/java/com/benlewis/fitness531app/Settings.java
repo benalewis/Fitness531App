@@ -50,10 +50,10 @@ public class Settings extends AppCompatActivity {
                 Snackbar snackBar1 = Snackbar.make(findViewById(R.id.settingsResetAllButton),
                         "Input a value.", Snackbar.LENGTH_LONG);
                 Snackbar snackBar2 = Snackbar.make(findViewById(R.id.settingsResetAllButton),
-                        "Time updated.", Snackbar.LENGTH_LONG);
+                        "Timer updated.", Snackbar.LENGTH_LONG);
                 try {
                     long i = Long.parseLong(timerEditText.getText().toString());
-                    MainActivity.sharedPreferences.edit().putLong("timer", i).apply();
+                    MainActivity.sharedPreferences.edit().putLong("timer", i*1000).apply();
                     snackBar2.show();
                 } catch (Exception e) {
                     snackBar1.show();
