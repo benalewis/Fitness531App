@@ -25,7 +25,7 @@
         android:ems="10"
         android:id="@+id/settingsTimerEditText"
         android:hint="Timer (Seconds)"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/settingsTimerTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -33,33 +33,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Timer"
-        android:layout_below="@+id/textView2"
+        android:id="@+id/settingsSetTimerButton"
+        android:layout_alignTop="@+id/settingsTimerEditText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/settingsSetTimerButton" />
+        android:layout_alignParentEnd="true" />
 
     <ToggleButton
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/settingsMetricToggle"
         android:checked="true"
         android:text="KG"
-        android:layout_below="@+id/settingsSetTimerButton"
-        android:layout_alignLeft="@+id/settingsSetTimerButton"
-        android:layout_alignStart="@+id/settingsSetTimerButton"
-        android:layout_marginTop="47dp"
         android:textOff="Lbs"
-        android:textOn="KG" />
+        android:textOn="KG"
+        android:layout_below="@+id/settingsMetricTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Metric (KG or Lbs)"
+        android:text="Weight Unit"
         android:id="@+id/settingsMetricTextView"
-        android:textSize="30sp"
-        android:layout_alignBottom="@+id/settingsMetricToggle"
+        android:textSize="40sp"
+        android:layout_below="@+id/settingsSetTimerButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false" />
 
     <Button
         android:layout_width="wrap_content"
@@ -67,7 +67,27 @@
         android:text="RESET"
         android:id="@+id/settingsResetAllButton"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/settingsMetricToggle"
-        android:layout_alignStart="@+id/settingsMetricToggle" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Timer"
+        android:id="@+id/settingsTimerTextView"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset All Data"
+        android:id="@+id/settingsResetButton"
+        android:layout_below="@+id/settingsMetricToggle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="40sp" />
 
 </RelativeLayout>
