@@ -111,16 +111,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Timer values passed are in ms, 2nd value is how often to call the first method
-        final CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(timer, 995) {
 
             @Override
             public void onTick(long millisUntilFinished) {
 
-                int totalSeconds = (int)millisUntilFinished / 1000;
-                String minutes = Integer.toString(totalSeconds/60);
-                String secondsLeft = Integer.toString(totalSeconds%60);
-
-                timerTextView.setText("Time Left: " + minutes + ":" + secondsLeft);
+                displayTime(millisUntilFinished);
             }
 
             @Override
@@ -170,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().putInt("bench", 0).apply();
             sharedPreferences.edit().putInt("squat", 0).apply();
             sharedPreferences.edit().putInt("deadlift", 0).apply();
-            sharedPreferences.edit().putLong("timer", 0).apply();
+            sharedPreferences.edit().putLong("timer", 9000).apply();
             sharedPreferences.edit().putString("metric", "kg").apply();
         }
 
@@ -181,11 +177,7 @@ public class MainActivity extends AppCompatActivity {
         timer = sharedPreferences.getLong("timer", 0);
         metric = sharedPreferences.getString("metric", "");
 
-        //Timer
-        int totalSeconds = (int)timer / 1000;
-        String minutes = Integer.toString(totalSeconds/60);
-        String secondsLeft = Integer.toString(totalSeconds%60);
-        timerTextView.setText("Time Left: " + minutes + ":" + secondsLeft);
+       displayTime(timer);
     }
 
     public void updateLifts() {
@@ -294,8 +286,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + metric + " x " + calc531array[arrayRef]);
-        return  warmUp;
+        return  warmUp;}
+
+        public void displayTime(long milliseconds) {
+
+            int totalSeconds = (int)milliseconds / 1000;
+            String minutes = Integer.toString(totalSeconds/60);
+            String secondsLeftString = Integer.toString(totalSeconds%60);
+            int secondsLeft = totalSeconds%60;
+
+            if (secondsLeftString.equals("0")) {
+                secondsLeftString = "00";
+            } else if (secondsLeft < 10 && !secondsLeftString.equals("00") ) {
+                secondsLeftString = "0" + secondsLeftString;
+            }
+
+            timerTextView.setText("Time Left: " + minutes + ":" + secondsLeftString);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
