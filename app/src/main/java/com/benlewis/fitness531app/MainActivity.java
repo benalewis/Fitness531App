@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + metric + " x " + calc531array[arrayRef]);
+        warmUp = (((int) (oneRepMax * adjustment * weekAdjustment)) + " " + metric + " x " + calc531array[arrayRef]);
         return  warmUp;}
 
         public void displayTime(long milliseconds) {
