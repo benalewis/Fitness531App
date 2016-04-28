@@ -65,8 +65,10 @@ public class Settings extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     MainActivity.sharedPreferences.edit().putString("metric", "kg").apply();
+                    metricToggle.setAlpha(1f);
                 } else {
                     MainActivity.sharedPreferences.edit().putString("metric", "lbs").apply();
+                    metricToggle.setAlpha(0.8f);
                 }
             }
         });
