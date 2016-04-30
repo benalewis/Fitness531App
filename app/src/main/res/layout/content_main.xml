@@ -65,11 +65,12 @@
         android:layout_height="wrap_content"
         android:text="0:00"
         android:id="@+id/mainTimerTextView"
-        android:textSize="45sp"
+        android:textSize="25sp"
         android:layout_alignTop="@+id/mainResetButton"
         android:layout_toRightOf="@+id/mainResetButton"
         android:layout_toEndOf="@+id/mainResetButton"
-        android:layout_marginLeft="5sp" />
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="8sp" />
 
     <Button
         android:layout_width="wrap_content"
