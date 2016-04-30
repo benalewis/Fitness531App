@@ -60,12 +60,15 @@ public class Calculator extends AppCompatActivity {
                 //Snack bar Code
                 final Snackbar snackbar = Snackbar.make(findViewById(R.id.calcResultTextView),
                         "Enter data in all fields", Snackbar.LENGTH_LONG);
+                Snackbar snackbar1 = Snackbar.make(findViewById(R.id.calcResultTextView),
+                        "Result Calculated.", Snackbar.LENGTH_LONG);
 
                 try {
                 double w = Double.parseDouble(weight.getText().toString());
                 double r = Double.parseDouble(reps.getText().toString());
 
                 result.setText(calc1RM(w,r));
+                    snackbar1.show();
                 } catch (Exception e) {
                     snackbar.show();
                 }

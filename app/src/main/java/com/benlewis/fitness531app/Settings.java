@@ -40,6 +40,10 @@ public class Settings extends AppCompatActivity {
                 MainActivity.sharedPreferences.edit().putInt("deadlift", 0).apply();
                 MainActivity.sharedPreferences.edit().putLong("timer", 0).apply();
                 MainActivity.sharedPreferences.edit().putString("metric", "kg").apply();
+
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.settingsResetAllButton),
+                        "Data Reset.", Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         });
 
